@@ -1,0 +1,8 @@
+/* Replace blue with RWP red */
+.wy-side-nav-search,
+.wy-nav-top {
+	background-color: #ad2323;
+}
+.wy-side-nav-search input[type=text] {
+	border-color: #ad2323; 
+}
