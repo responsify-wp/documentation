@@ -16,9 +16,17 @@ Turn on this option if you want to deliver high resolution images to devices wit
 
 #Custom media queries
 ![Custom media queries](images/screenshot-3.png) 
-There might be situations when you want to override the generated settings. You can do this [programmatically in your templates](/settings#media-queries), but as of RWP 1.9, this can easily be done with this new interface.  
+There might be situations when you want to override the generated media queries. You can do this [programmatically in your templates](/settings#media-queries), but as of RWP 1.9, this can easily be done with this new user interface.  
 Begin with clicking the **Add setting** button and give the new setting a name.  
-Next, select if these settings should be applied everywhere or only in specific situations. 
+Next, select if these settings should be applied everywhere or only in specific situations. The situations in which you can add your own media queries are these:
+
+- When **Page ID** is... 
+- When **Page slug** is... 
+- When **Page template** is...
+- When **Image class** is...
+- When **Image size** is...
+
+As you can see in the image above, it's possible to have a general default setting and then override this when needed. In this case, when the page template is equal to ``wide.php``.
 
 #Ignored image formats
 ![Use on](images/screenshot-4.png)  
