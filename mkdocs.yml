@@ -1,7 +1,7 @@
 site_name: Responsify WP Documentation
 theme: readthedocs
 pages:
-- 'index.md'
+- 'Settings page': 'index.md'
 - 'settings.md'
 - 'retina.md'
 - 'functions.md'

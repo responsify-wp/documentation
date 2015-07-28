@@ -1,82 +1,28 @@
-#Responsify WP
-[Responsify WP](https://wordpress.org/plugins/responsify-wp/) is the WordPress plugin that cares about responsive images.
+#Use on
+![Use on](images/screenshot-1.png)  
+Out of the box is Responsify WP applied to two filters, ``the_content`` (content inserted through the editor) and ``post_thumbnail_html`` (featured image).  
+It's possible to add additional filters that RWP will be applied to using the [rwp_add_filters](/filters#add-filters) filter.
 
-* Use ``img`` with srcset/sizes attributes.
-* ...or the ``picture`` element.
-* Works with or without [Picturefill](http://scottjehl.github.io/picturefill/).
-* Supports high resolution images (retina).
-* Custom media queries.
-* Handpick which image sizes to use.
-* Responsive background images.
+#Markup pattern
+RWP will by default add ``srcset`` and ``sizes`` attributes to ``img`` tags. This is the [recommended markup pattern](http://blog.cloudfour.com/dont-use-picture-most-of-the-time/) for responsive images.  
+With that said, feel free to use the ``picture`` element if you want to. RWP also supports the old ``span`` markup pattern that Picturefill used to have.
 
-**Basic demonstration**  
-[https://www.youtube.com/watch?v=3ThYWO6vHKI](https://www.youtube.com/watch?v=3ThYWO6vHKI&spfreload=10)  
-**Demo site**  
-[http://responsifywp.com/demo/](http://responsifywp.com/demo/)
+#Image sizes
+![Image sizes and retina](images/screenshot-2.png)  
+If you have created an custom image size that you only uses in particular situations, just deselect it and RWP will ignore it!
 
-##<a name="description"></a>Description
-In short, it will replace all ``<img>`` tags within ``the_content`` (or other filters that you can [add yourself](#filters)) with responsive images.
-For example, you might have a template that looks like this:  
+#Retina
+Turn on this option if you want to deliver high resolution images to devices with high pixel density (retina). See the [Retina section](/retina) of the documentation for instructions on how to get started.
 
-````html
-<article>
-	<h1><?php the_title();?></h1>
-	<?php the_content();?>
-</article>
-````
+#Custom media queries
+![Custom media queries](images/screenshot-3.png) 
+There might be situations when you want to override the generated settings. You can do this [programmatically in your templates](/settings#media-queries), but as of RWP 1.9, this can easily be done with this new interface.  
+Begin with clicking the **Add setting** button and give the new setting a name.  
+Next, select if these settings should be applied everywhere or only in specific situations. 
 
-This might output something like this:
+#Ignored image formats
+![Use on](images/screenshot-4.png)  
+Using animated .gifs? Simply tell RWP to ignore those images by checking the checkbox.
 
-````html
-<article>
-	<h1>Hello world</h1>
-	<p>Lorem ipsum dolor sit amet...</p>
-	<img src="full-size.jpg" alt="Image description">
-</article>
-````
-
-But once you have activated the plugin, it will look like this instead:
-
-````html
-<article>
-	<h1>Hello world</h1>
-	<p>Lorem ipsum dolor sit amet...</p>
-	<img sizes="(min-width 1024px) 1440px, (min-width: 300px) 1024px, (min-width: 150px) 300px, 150px" 
-	    srcset="thumbnail.jpg 150w,
-	    medium.jpg 300w,
-	    large.jpg 1024w,
-	    full-size.jpg 1440w"
-	    alt="Image description">
-</article>
-````
-
-On the RWP settings page, you can select between using an ``<img>`` tag with ``sizes``/``srcset`` attributes and the ``<picture>`` element.
-
-````html
-<picture>
-    <source srcset="full-size.jpg" media="(min-width: 1024px)">
-    <source srcset="large.jpg" media="(min-width: 300px)">
-    <source srcset="medium.jpg" media="(min-width: 150px)">
-    <img srcset="thumbnail.jpg" alt="Image description">
-</picture>
-````
-
-Congratulations! You're now serving images with an appropriate size to the users.    
-The different versions of the image in the examples above is in the standard ``thumbnail``, ``medium``, ``large`` and ``full`` sizes. 
-Any **custom sizes** of the image will also be found and used.  
-The **media queries** that the ``picture`` element are using is based on the width of the "previous" image.  
-
-RWP also has support for the old markup pattern that uses ``<span>`` tags. However, this solution has some 
-limitations and is not the recommended.
-
-````html
-<span data-picture data-alt="Image description">
-    <span data-src="thumbnail.jpg"></span>
-    <span data-src="medium.jpg" data-media="(min-width: 150px)"></span>
-    <span data-src="large.jpg" data-media="(min-width: 300px)"></span>
-    <span data-src="full-size.jpg" data-media="(min-width: 1024px)"></span>
-    <noscript>
-        <img src="thumbnail.jpg" alt="Image description">
-    </noscript>
-</span>
-````
+#Picturefill
+RWP generates markup for the Picturefill polyfill by default. If you choose to turn Picturefill off, the responsive images will only work in modern browsers.
